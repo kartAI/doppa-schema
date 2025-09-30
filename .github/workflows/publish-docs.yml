@@ -6,6 +6,9 @@ on:
       - "v*.*.*"
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build-docs:
     runs-on: ubuntu-latest
@@ -27,18 +30,20 @@ jobs:
         run: |
           VERSION=${GITHUB_REF_NAME}   # e.g. v0.0.1
           mkdir -p site/$VERSION
-          generate-schema-doc schema/ site/$VERSION/ \
+          generate-schema-doc schema/ site/$VERSION \
             --config expand_buttons=true \
             --config link_to_reused_ref=true \
             --config show_breadcrumbs=true \
             --config with_footer=false
 
-          # also copy to /latest
-          rsync -a --delete site/$VERSION/ site/latest/
+          # also update "latest"
+          rm -rf site/latest
+          cp -r site/$VERSION site/latest
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
           publish_dir: site
           keep_files: true
