@@ -1,0 +1,44 @@
+﻿name: Publish Versioned Schema Documentation
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+  workflow_dispatch:
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install generator
+        run: |
+          python -m pip install --upgrade pip
+          pip install json-schema-for-humans
+
+      - name: Generate docs for this version
+        run: |
+          VERSION=${GITHUB_REF_NAME}   # e.g. v0.0.1
+          mkdir -p site/$VERSION
+          generate-schema-doc schema/ site/$VERSION/ \
+            --config expand_buttons=true \
+            --config link_to_reused_ref=true \
+            --config show_breadcrumbs=true \
+            --config with_footer=false
+
+          # also copy to /latest
+          rsync -a --delete site/$VERSION/ site/latest/
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: site
+          keep_files: true
