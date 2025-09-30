@@ -1,0 +1,44 @@
+---
+"$schema": https://json-schema.org/draft/2020-12/schema
+title: Common definitions
+description: Definitions shared by all themes
+"$defs":
+  propertyDefinitions:
+    featureType:
+      enum:
+        - building
+    id:
+      type: string
+      description: >-
+        An identifier unique within the doppa environment. It is represented as a UUIDv4 (GUID) and serves as the 
+        primary key to link and reference objects across datasets.
+      minLength: 1
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+    level:
+      description: Z-order of the feature where 0 is visual level
+      type: integer
+      default: 0
+    theme:
+      description: Top-level theme this theme belongs to
+      type: string
+      enum:
+        - buildings
+  propertyContainers:
+    levelContainer:
+      title: level
+      description: Properties defining feature Z-order, i.e., stacking order
+      type: object
+      properties:
+        level:
+          "$ref": "#/$defs/propertyDefinitions/level"
+    featurePropertiesContainer:
+      title: doppa properties
+      description: Top-level properties shared by all features
+      type: object
+      required: [ theme, type ] # TODO: Add more when schema is extended
+      patternProperties:
+        ^ext_.*$:
+          description: "Additional top-level properties must be prefixed with 'ext_'."
+      properties:
+        theme: { "$ref": "#/$defs/propertyDefinitions/theme" }
+        type: { "$ref": "#/$defs/propertyDefinitions/featureType" }
