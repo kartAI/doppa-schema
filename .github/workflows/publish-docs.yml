@@ -34,8 +34,7 @@ jobs:
             --config with_footer=false
 
           # also copy to /latest
-          rm -rf site/latest
-          cp -r site/$VERSION site/latest
+          rsync -a --delete site/$VERSION/ site/latest/
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
