@@ -29,7 +29,7 @@ def yaml_json_loader(uri: str):
 
 def load_schema(schema_path: Path) -> dict:
     """Load a YAML schema file and resolve $ref references."""
-    with open(schema_path, "r", encoding="utf-8") as f:
+    with open(schema_path, "r", encoding="utf-8-sig") as f:
         yaml_schema = yaml.safe_load(f)
 
     base_uri = schema_path.parent.as_uri() + "/"

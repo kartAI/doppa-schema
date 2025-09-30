@@ -32,7 +32,7 @@ def test_properties_invalid_string():
         validate(instance)
 
 
-def test_geometry_can_not_be_null():
+def test_geometry_cannot_be_null():
     instance = make_instance({"geometry": None})
     with pytest.raises(jsonschema.exceptions.ValidationError):
         validate(instance)
