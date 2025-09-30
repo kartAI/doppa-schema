@@ -1,6 +1,9 @@
 ﻿name: CI - Run Pytest
 
 on:
+  push:
+    tags:
+      - 'v*.*.*'
   pull_request:
     branches:
       - main
