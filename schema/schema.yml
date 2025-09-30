@@ -1,0 +1,16 @@
+﻿---
+"$schema": https://json-schema.org/draft/2020-12/schema
+title: doppa schema
+type: object
+unevaluatedProperties: false
+allOf:
+  - "$ref": https://geojson.org/schema/Feature.json
+oneOf:
+  - if:
+      properties:
+        properties:
+          properties:
+            theme: { enum: [ buildings ] }
+            type: { enum: [ building ] }
+    then: { "$ref": buildings/building.yml }
+    else: { propertyNames: false }

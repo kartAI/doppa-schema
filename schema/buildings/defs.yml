@@ -1,0 +1,17 @@
+"$schema": https://json-schema.org/draft/2020-12/schema
+title: Shared Building properties
+description: Common schema definitions shared by building footprints
+"$defs":
+  propertyContainers:
+    shapeContainer:
+      title: shape
+      description: Properties of the buildings shape, such as shape length and area
+      properties:
+        area:
+          description: Area of the shape
+          type: number
+          exclusiveMinimum: 0
+        length:
+          description: Circumference of the shape
+          type: number
+          exclusiveMinimum: 0

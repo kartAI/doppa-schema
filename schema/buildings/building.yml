@@ -1,0 +1,28 @@
+---
+"$schema": https://json-schema.org/draft/2020-12/schema
+title: building
+description: >-
+  A building is a man-made structure with a roof that exists permanently in one place. Buildings are compatible with
+  GeoJSON Polygon features.
+type: object
+properties:
+  id:
+    "$ref": ../defs.yml#/$defs/propertyDefinitions/id
+  geometry:
+    unevaluatedProperties: false
+    oneOf:
+      - "$ref": https://geojson.org/schema/Polygon.json
+      - "$ref": https://geojson.org/schema/MultiPolygon.json
+  properties:
+    unevaluatedProperties: false
+    allOf:
+      - "$ref": ../defs.yml#/$defs/propertyContainers/featurePropertiesContainer
+      - "$ref": ../defs.yml#/$defs/propertyContainers/levelContainer
+      - "$ref": ./defs.yml#/$defs/propertyContainers/shapeContainer
+    properties:
+      buildingType:
+        description: >-
+          Building code is provided a number between 1 and 999. The name and description of each code can be found at 
+          https://register.geonorge.no/sosi-kodelister/kartdata/bygningstypekode?lang=no
+        type: integer
+        exclusiveMinimum: 0
