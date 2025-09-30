@@ -1,12 +1,13 @@
 ﻿name: Publish Schema to Azure Blob
 
 on:
-  push:
-    tags:
-      - 'v*.*.*'
+  release:
+    types: [ published ]
+
 
 jobs:
   upload:
+    if: startsWith(github.event.release.tag_name, 'v')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
