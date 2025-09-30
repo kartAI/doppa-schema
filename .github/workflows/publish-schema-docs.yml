@@ -1,4 +1,4 @@
-name: Deploy Doppa Schema Docs
+name: Publish Doppa schema docs to GitHub pages
 
 on:
   release:
