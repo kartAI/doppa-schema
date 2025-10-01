@@ -21,9 +21,7 @@ jobs:
               --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
               --account-key ${{ secrets.AZURE_STORAGE_KEY }} \
               --destination schema/${GITHUB_REF_NAME} \
-              --source schema \
-              --pattern *.yml \
-              --pattern *.yaml
+              --source schema 
 
       - name: Upload schema folder (latest)
         uses: azure/cli@v2
@@ -34,7 +32,5 @@ jobs:
               --account-key ${{ secrets.AZURE_STORAGE_KEY }} \
               --destination schema/latest \
               --source schema \
-              --overwrite \
-              --pattern *.yml \
-              --pattern *.yaml
+              --overwrite 
 
