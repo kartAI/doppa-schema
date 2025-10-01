@@ -1,4 +1,4 @@
-﻿name: Publish Schema to Azure Blob
+﻿name: Publish Schema to Azure Blob Storage
 
 on:
   release:
