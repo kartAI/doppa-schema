@@ -1,4 +1,4 @@
-"$schema": https://json-schema.org/draft/2020-12/schema
+---
 title: Shared Building properties
 description: Common schema definitions shared by building footprints
 "$defs":
@@ -15,3 +15,17 @@ description: Common schema definitions shared by building footprints
           description: Circumference of the shape
           type: number
           exclusiveMinimum: 0
+    captureMetadataContainer:
+      title: capture metadata
+      description: >-
+        Properties describing the capture and update context of the data. This includes timestamps such as when the 
+        feature was originally recorded or last modified, as well as metadata about the method of measurement, confidence level, or other information related to data acquisition and provenance.
+      properties:
+        featureCaptureTime:
+          "$ref": ../defs.yml#/$defs/propertyDefinitions/time
+          description: >-
+            Timestamp for when feature was initially measured
+        featureUpdateTime:
+          "$ref": ../defs.yml#/$defs/propertyDefinitions/time
+          description: >-
+            Timestamp for when feature was last updated

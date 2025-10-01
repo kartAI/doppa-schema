@@ -19,10 +19,11 @@ properties:
       - "$ref": ../defs.yml#/$defs/propertyContainers/featurePropertiesContainer
       - "$ref": ../defs.yml#/$defs/propertyContainers/levelContainer
       - "$ref": ./defs.yml#/$defs/propertyContainers/shapeContainer
+      - "$ref": ./defs.yml#/$defs/propertyContainers/captureMetadataContainer
     properties:
       buildingType:
         description: >-
           Building code is provided a number between 1 and 999. The name and description of each code can be found at 
-          https://register.geonorge.no/sosi-kodelister/kartdata/bygningstypekode?lang=no
+          [SOSI Kodeliste - Bygningstypekode](https://register.geonorge.no/sosi-kodelister/kartdata/bygningstypekode?lang=no)
         type: integer
         exclusiveMinimum: 0

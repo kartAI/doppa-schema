@@ -686,11 +686,29 @@
                     "exclusiveMinimum": 0
                   }
                 }
+              },
+              {
+                "title": "capture metadata",
+                "description": "Properties describing the capture and update context of the data. This includes timestamps such as when the  feature was originally recorded or last modified, as well as metadata about the method of measurement, confidence level, or other information related to data acquisition and provenance.",
+                "properties": {
+                  "featureCaptureTime": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "Timestamp in UTC format (ISO 8601 / RFC 3339). Example: 2025-09-30T14:05:00Z.",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+                  },
+                  "featureUpdateTime": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "Timestamp in UTC format (ISO 8601 / RFC 3339). Example: 2025-09-30T14:05:00Z.",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+                  }
+                }
               }
             ],
             "properties": {
               "buildingType": {
-                "description": "Building code is provided a number between 1 and 999. The name and description of each code can be found at  https://register.geonorge.no/sosi-kodelister/kartdata/bygningstypekode?lang=no",
+                "description": "Building code is provided a number between 1 and 999. The name and description of each code can be found at  [SOSI Kodeliste - Bygningstypekode](https://register.geonorge.no/sosi-kodelister/kartdata/bygningstypekode?lang=no)",
                 "type": "integer",
                 "exclusiveMinimum": 0
               }

@@ -1,5 +1,4 @@
 ---
-"$schema": https://json-schema.org/draft/2020-12/schema
 title: Common definitions
 description: Definitions shared by all themes
 "$defs":
@@ -23,6 +22,12 @@ description: Definitions shared by all themes
       type: string
       enum:
         - buildings
+    time:
+      type: string
+      format: date-time
+      description: >-
+        Timestamp in UTC format (ISO 8601 / RFC 3339). Example: 2025-09-30T14:05:00Z.
+      pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$
   propertyContainers:
     levelContainer:
       title: level
