@@ -4,10 +4,17 @@ on:
   release:
     types: [ published ]
   pull_request:
-    branches:
-      - main
+    branches: [ main ]
+    paths:
+      - 'src/**'
+      - 'schema/**'
+      - 'tests/**'
   merge_group:
     types: [ checks_requested ]
+    paths:
+      - 'src/**'
+      - 'schema/**'
+      - 'tests/**'
   workflow_dispatch:
 
 jobs:
