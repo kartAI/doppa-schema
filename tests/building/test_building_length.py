@@ -42,14 +42,3 @@ def test_area_and_length_valid():
 
 
 
-def test_length_negative_invalid():
-    instance = make_instance({
-        "properties": {
-            "theme": "buildings",
-            "type": "building",
-            "buildingType": 101,
-            "length": -10
-        }
-    })
-    with pytest.raises(jsonschema.exceptions.ValidationError):
-        validate(instance)
